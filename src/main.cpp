@@ -100,6 +100,11 @@ int main(int argc, char *argv[]) {
         std::cout << "Error: fly zone points file is either empty or of wrong format" << std::endl;
         return -1;
     }
+    std::cout << "Fly zone: " << std::endl;
+    for (const auto &p: fly_zone) {
+        std::cout << p.first << ", " << p.second << std::endl;
+    }
+
     std::vector<std::vector<point_t>> no_fly_zones;
     for (const auto &s: algorithm_config.no_fly_zone_points_files) {
         auto no_fly_zone = read_points_from_csv(s);
@@ -111,8 +116,8 @@ int main(int argc, char *argv[]) {
 
     // Create a logger to log everything directly into stdout
     auto shared_logger = std::make_shared<loggers::SimpleLogger>();
-    EnergyCalculator calculator{algorithm_config.energy_calculator_config, shared_logger};
-    std::cout << "Energy calculator created. Optimal speed: " << calculator.get_optimal_speed() << std::endl;
+    EnergyCalculator energy_calculator{algorithm_config.energy_calculator_config, shared_logger};
+    std::cout << "Energy calculator created. Optimal speed: " << energy_calculator.get_optimal_speed() << std::endl;
 
     // Initialize polygon and transform all the point into meters
     MapPolygon polygon;
@@ -121,9 +126,6 @@ int main(int argc, char *argv[]) {
     } else {
         polygon = MapPolygon(fly_zone, no_fly_zones);
     }
-
-    EnergyCalculator energy_calculator{algorithm_config.energy_calculator_config};
-
     // Decompose the polygon
     ShortestPathCalculator shortest_path_calculator(polygon);
 
@@ -211,6 +213,10 @@ std::vector<point_t> read_points_from_csv(const std::string &filename) {
     }
 
     is.close();
+    // Make sure that the first point is always the same as the last one
+    if (not points.empty() and points[0] != points[points.size() - 1]) {
+        points.push_back(points[0]);
+    }
     return points;
 }
 
