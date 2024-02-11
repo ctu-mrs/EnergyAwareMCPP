@@ -2,7 +2,7 @@
 
 
 # Energy-aware Multi-UAV Coverage Mission Planning with Optimal Speed of Flight
-This repository contains the code for **Energy-aware Multi-UAV Coverage Mission Planning with Optimal Speed of Flight** presented in our paper [Novosad, Penicka, Vonasek CTopPRM'23](https://ieeexplore.ieee.org/document/10414185).
+This repository contains the code for **Energy-aware Multi-UAV Coverage Mission Planning with Optimal Speed of Flight** presented in our paper [Datsko, Nekovar, Penicka, Saska](https://ieeexplore.ieee.org/document/10414185).
 [![plot](./figs/title_1.jpg)](https://youtu.be/S8kjqZp-G-0)
 
 ## Citing
