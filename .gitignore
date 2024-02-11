@@ -1,2 +1,4 @@
+.idea
+cmake-build-*
 build
-sample_config/path_*.csv
+**path_*.csv
