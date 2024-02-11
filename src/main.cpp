@@ -9,6 +9,7 @@
 #include <fstream>
 #include "SimpleLogger.h"
 #include "utils.hpp"
+#include <iomanip>
 
 // Struct defining full algorithm config in one place
 struct algorithm_config_t {
@@ -147,6 +148,17 @@ int main(int argc, char *argv[]) {
 
     std::cout << "Writing output paths into files" << std::endl;
     auto best_paths = best_solution.paths;
+
+    // If initial paths were read in lat_lon coordinates, write the output paths in the same way
+    if (algorithm_config.points_in_lat_lon) {
+        for (auto &path: best_paths) {
+            for (auto &p: path) {
+                auto lat_lon_p = meters_to_gps_coordinates({p.x, p.y}, algorithm_config.lat_lon_origin);
+                p.x = lat_lon_p.first;
+                p.y = lat_lon_p.second;
+            }}
+    }
+
     for (size_t i = 0; i < best_paths.size(); ++i) {
         write_polygon_into_csv(best_paths[i], "path_" + std::to_string(i) + ".csv");
     }
@@ -222,6 +234,7 @@ std::vector<point_t> read_points_from_csv(const std::string &filename) {
 
 void write_polygon_into_csv(const std::vector<point_heading_t<double>> &path, const std::string &filename) {
     std::ofstream of{filename};
+    of << std::setprecision(10);
     for (const auto &p: path) {
         of << p.x << ", " << p.y << std::endl;
     }
@@ -314,7 +327,9 @@ algorithm_config_t parse_algorithm_config(const YAML::Node &config) {
     }
 
     if (config["no_fly_zones_filenames"]) {
-        algorithm_config.no_fly_zone_points_files = config["no_fly_zones_filename"].as<std::vector<std::string>>();
+        for (const auto &node: config["no_fly_zones_filename"]) {
+            algorithm_config.no_fly_zone_points_files.emplace_back(node.as<std::string>());
+        };
     }
 
     algorithm_config.fly_zone_points_file = config["fly_zone_filename"].as<std::string>();

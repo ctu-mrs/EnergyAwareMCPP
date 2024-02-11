@@ -17,35 +17,37 @@ best_speed_model:
   c2: 0.00053292
 
 # Drone characteristics
-drone_mass: 0.9 # [kg]
-drone_area: 0.0215 # [m^2]
-average_acceleration: 10 # [m/s^2]
-propeller_radius: 0.119 # [m]
+drone_mass: 3.2 # [kg]
+drone_area: 0.07 # [m^2]
+average_acceleration: 2 # [m/s^2]
+propeller_radius: 0.19 # [m]
 number_of_propellers: 4
 
 # Algorithm tuning
-allowed_path_deviation: 0.5 # [m]
+allowed_path_deviation: 2 # [m]
 number_of_rotations: 3 # Number of initial rotations to try. The time complexity increases linearly with this term
 
 # Whether the provided points are in {latitude, longitude} format. Otherwise, points are considered to be in meters
-points_in_lat_lon: false
+points_in_lat_lon: true
 
 # These values are used only if the points_in_lat_lon is set to true
-latitude_origin: 10.0
-longitude_origin: 10.0
+latitude_origin: 50.111826583361925
+longitude_origin: 14.41890374448402
 
 # AOI definition
 fly_zone_filename: "fly_zone.csv"
-#no_fly_zones_filenames: [ "no-fly-1.csv", "no-fly-2.csv" ]
+no_fly_zones_filenames:
+  - "no_fly_zone_0.csv"
+
 
 # Directory where to place CSV files with generated paths. Make sure it always ends with /
 output_paths_location: "./"
 
 # Minimum number of paths to generate
-number_of_drones: 3
+number_of_drones: 1
 
 # Sweeping step in meters
-sweeping_step: 3
+sweeping_step: 5
 
 # 0 for Trapezoidal decomposition
 # 1 for Boustrophedon decomposition
@@ -57,14 +59,14 @@ decomposition_method: 1
 min_sub_polygons_per_uav: 1
 
 # Start and end position of each UAV. If points_in_lat_lon is defined, x and y are latitude and longitude
-start_x: 4
-start_y: 4
+start_x: 50.111826583361925
+start_y: 14.41890374448402
 
 # Parameters affecting algorithm performance and completion time
 rotations_per_cell: 5
-no_improvement_cycles_before_stop: 50
+no_improvement_cycles_before_stop: 400
 
 # Maximum energy os a single path [Wh]
-max_single_path_energy: 1000
+max_single_path_energy: 1000000000
 
 
