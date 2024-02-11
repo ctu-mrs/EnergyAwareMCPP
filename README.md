@@ -44,7 +44,7 @@ Install the following dependencies
 
 `sudo apt-get install build-essential cmake pkg-config`
 
-and compile in the build folder using cmake
+and compile in the build directory using cmake
 
 ```bash
 mkdir build
@@ -54,13 +54,17 @@ make
 ```
 
 ### Running the code
-After compilation you should see the coverage_mission_planner binary in the main folder. The prepared configuration files for existing maps are stored in the `sample_configs` directory, where you can find configurations similar to show we used in the paper. You can run the code from any of the subfolders with configs using:
+After compilation you should see the coverage_mission_planner binary in the main directory. The prepared configuration files for existing maps are stored in the `sample_configs` directory, where you can find configurations similar to show we used in the paper. You can run the code from any of the subdirectories with configs using:
 `../../build/coverage_mission_planner sample_algorithm_config.yaml`
 The output of the run is saved in `path_*.csv` files where * is the number of the generated path.
 
 All the sample configuration files contain sufficient comments, so you can copy any of them and modify according to your needs.
 In the configuration file, you should provide all the algorithm parameters and list the names of `.csv` files containing polygons describing fly zones and no-fly zones.
 These files may contain points either (latitude, longitude) format or (x, y) in meters, and the output paths will be in the same format as the input
+
+
+### After (and before) running the code, you can visualize the Area of Interest together with generated paths
+For this, from the direcotry with the experiment, run the provided python script: `python ../../scripts/visualize_paths.py ./config.yaml` if no paths were generated yet, or `python ../../scripts/visualize_paths.py ./config.yaml path*` to visualize the produced paths.
 
 
 ### Limitations

@@ -36,8 +36,7 @@ longitude_origin: 14.41890374448402
 
 # AOI definition
 fly_zone_filename: "fly_zone.csv"
-no_fly_zones_filenames:
-  - "no_fly_zone_0.csv"
+no_fly_zones_filenames: ["no_fly_zone_0.csv"]
 
 
 # Directory where to place CSV files with generated paths. Make sure it always ends with /

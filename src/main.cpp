@@ -113,6 +113,7 @@ int main(int argc, char *argv[]) {
             std::cout << "Error: no fly zone file " << s << " is either empty or of a wrong format" << std::endl;
             return -1;
         }
+        no_fly_zones.push_back(no_fly_zone);
     }
 
     // Create a logger to log everything directly into stdout
@@ -327,7 +328,7 @@ algorithm_config_t parse_algorithm_config(const YAML::Node &config) {
     }
 
     if (config["no_fly_zones_filenames"]) {
-        for (const auto &node: config["no_fly_zones_filename"]) {
+        for (const auto &node: config["no_fly_zones_filenames"]) {
             algorithm_config.no_fly_zone_points_files.emplace_back(node.as<std::string>());
         };
     }
