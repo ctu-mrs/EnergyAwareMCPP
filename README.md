@@ -61,3 +61,8 @@ The output of the run is saved in `path_*.csv` files where * is the number of th
 All the sample configuration files contain sufficient comments, so you can copy any of them and modify according to your needs.
 In the configuration file, you should provide all the algorithm parameters and list the names of `.csv` files containing polygons describing fly zones and no-fly zones.
 These files may contain points either (latitude, longitude) format or (x, y) in meters, and the output paths will be in the same format as the input
+
+
+### Limitations
+It is important to mention that the current implementation does not support inputs where any two polygon edges intersect.
+This means that all the no-fly-zones should be fully inside of the fly-zone and may not overlap with each other
