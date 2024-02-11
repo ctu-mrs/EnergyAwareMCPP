@@ -25,7 +25,7 @@ D. Datsko, F. Nekovar, R. Penicka and M. Saska, "Energy-aware Multi-UAV Coverage
 
 
 ## License
-GPL-3.0 License. Copyright (C) 2022 M. Novosad, R. Pěnička, V. Vonásek (Faculty of Electrical Engineering, Czech Technical University in Prague).
+GPL-3.0 License. Copyright (C) 2022 D. Datsko, F. Nekovář, R. Pěnička, M. Saska (Faculty of Electrical Engineering, Czech Technical University in Prague).
 
 This is a research code, expect that it changes often and any fitness for a particular purpose is disclaimed.
 
@@ -54,6 +54,10 @@ make
 ```
 
 ### Running the code
-After compilation you should see the coverage_mission_planner binary in the main folder. The prepared cofiguration files for exisitng maps are stored in sample_config/ where the desired parameters and map can be set. You can run the code from the folder with configs using:
-`../build/coverage_mission_planner sample_algorithm_config.yaml`
-The output of the run is saved in path_*.csv files where * is the number of the generated path.
+After compilation you should see the coverage_mission_planner binary in the main folder. The prepared configuration files for existing maps are stored in the `sample_configs` directory, where you can find configurations similar to show we used in the paper. You can run the code from any of the subfolders with configs using:
+`../../build/coverage_mission_planner sample_algorithm_config.yaml`
+The output of the run is saved in `path_*.csv` files where * is the number of the generated path.
+
+All the sample configuration files contain sufficient comments, so you can copy any of them and modify according to your needs.
+In the configuration file, you should provide all the algorithm parameters and list the names of `.csv` files containing polygons describing fly zones and no-fly zones.
+These files may contain points either (latitude, longitude) format or (x, y) in meters, and the output paths will be in the same format as the input
