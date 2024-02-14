@@ -1,9 +1,3 @@
-# EnergyAwareMCPP
-
-The source code will be available here once the paper on it is published
-=======
-## This is a development branch and code here may be not stable. For the latest stable version, please refer to the `master` branch
-
 
 # Energy-aware Multi-UAV Coverage Mission Planning with Optimal Speed of Flight
 This repository contains the code for **Energy-aware Multi-UAV Coverage Mission Planning with Optimal Speed of Flight** presented in our paper [Datsko, Nekovar, Penicka, Saska](https://ieeexplore.ieee.org/document/10414185).
